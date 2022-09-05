@@ -1,0 +1,7 @@
+#VXLAN bridges configuration
+#add to container entrypoint script /usr/lib/frr/docker-container
+
+ip link add vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth1
+ip link set vxlan10 master br0
+ip link set vxlan10 up
+

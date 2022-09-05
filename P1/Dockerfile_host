@@ -1,0 +1,9 @@
+FROM alpine
+
+WORKDIR /
+
+RUN apk update
+RUN apk upgrade
+RUN apk add openrc --no-cache
+RUN openrc default
+

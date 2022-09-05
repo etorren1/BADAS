@@ -1,0 +1,20 @@
+FROM alpine
+
+WORKDIR /
+
+RUN apk update
+RUN apk upgrade
+RUN apk add openrc --no-cache
+RUN openrc default
+RUN apk add tini --no-cache
+RUN apk add frr
+
+RUN echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+RUN sed -i 's/bgpd=no/bgpd=yes/;s/ospfd=no/ospfd=yes/;s/isisd=no/isisd=yes/' /etc/frr/daemons
+
+COPY ./docker-start /usr/lib/frr/docker-start
+
+RUN chmod 777 /usr/lib/frr/docker-start
+
+ENTRYPOINT ["/sbin/tini", "--", "/usr/lib/frr/docker-start"]
+

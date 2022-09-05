@@ -1,0 +1,17 @@
+#add this configuration to /etc/network/interfaces for choised adapters
+
+auto eth0
+iface eth0 inet static
+	address 30.1.1.101
+	netmask 255.255.255.0
+
+auto eth1
+iface eth1 inet static
+	address 10.1.1.1
+	netmask 255.255.255.0
+
+auto br0
+iface br0 inet manual
+	up brctl addbr br0
+	up brctl addif br0 eth0
+	up ip link set br0 up

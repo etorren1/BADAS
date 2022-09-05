@@ -1,0 +1,13 @@
+
+##set ipv4 addr for connected adapter (here is 'eth1')
+#ifconfig eth1 172.17.8.101 netmask 255.255.255.0
+
+#create VXLAN for choised port and adapter (here is 'eth1')
+#create bridge and link it
+ip link add vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth1
+brctl addbr br0
+brctl addif br0 eth0
+ip link set vxlan10 master br0
+ip link set vxlan10 up
+ip link set br0 up
+
