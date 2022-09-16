@@ -1,0 +1,30 @@
+# configurate our bgp enpv on router_1 exploring principle route reflection
+# we must use vtysh (shell for frr daemons), and use CLI commands
+
+vtysh
+conf t
+#configurate bgp (see /etc/frr/bgpd.conf)
+router bgp 65
+ bgp router-id 1.1.1.1
+ neighbor 10.1.1.2 remote-as 65
+ neighbor 10.1.1.6 remote-as 65
+ neighbor 10.1.1.10 remote-as 65
+ address-family l2vpn evpn
+  neighbor 10.1.1.2 activate
+  neighbor 10.1.1.2 route-reflector-client
+  neighbor 10.1.1.6 activate
+  neighbor 10.1.1.6 activate
+  neighbor 10.1.1.10 route-reflector-client
+  neighbor 10.1.1.10 route-reflector-client
+  exit
+ exit
+#configurate ospf (see /etc/frr/ospfd.conf)
+router ospf
+ ospf router-id 1.1.1.1
+ network 1.1.1.1/32 area 0
+ network 10.1.1.0/30 area 0
+ network 10.1.1.4/30 area 0
+ network 10.1.1.8/30 area 0
+end
+do write
+

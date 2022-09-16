@@ -1,17 +1,28 @@
+#configurate adapter which connected to other router
 #add this configuration to /etc/network/interfaces for choised adapters
-
-auto eth0
-iface eth0 inet static
-	address 30.1.1.101
-	netmask 255.255.255.0
 
 auto eth1
 iface eth1 inet static
 	address 10.1.1.1
 	netmask 255.255.255.0
 
+#virtual interface vxlan and bridge must be after physical interfaces
+
+auto vxlan10
+iface vxlan10 inet manual
+	pre-up ip link add vxlan10 type vxlan \
+		id 10 \
+		group 239.1.1.1 \
+		dstport 4789 \
+		dev eth1
+	up ip link set vxlan10 up
+	post-down ip link del vxlan10
+
 auto br0
 iface br0 inet manual
-	up brctl addbr br0
+	pre-up brctl addbr br0
 	up brctl addif br0 eth0
+	up brctl addif br0 vxlan10
 	up ip link set br0 up
+	post-down ip link del br0
+

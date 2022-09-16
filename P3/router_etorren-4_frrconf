@@ -1,0 +1,22 @@
+# configurate bgp enpv on router_2
+# we must use vtysh (shell for frr daemons), and use CLI commands
+
+vtysh
+conf t
+#configurate bgp (see /etc/frr/bgpd.conf)
+router bgp 65
+ bgp router-id 1.1.1.4
+ neighbor 1.1.1.1 remote-as 65
+ address-family l2vpn evpn
+  neighbor 1.1.1.1 activate
+  advertice-all-vni
+  exit
+ exit
+#configurate ospf (see /etc/frr/ospfd.conf)
+router ospf
+ ospf router-id 1.1.1.4
+ network 1.1.1.4/32 area 0
+ network 10.1.1.8/30 area 0
+end
+do write
+

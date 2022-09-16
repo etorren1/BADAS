@@ -1,0 +1,27 @@
+#use /etc/network/interface config form P2 part
+
+#configurate loopback router interface for router-id protocols
+auto lo
+iface lo inet loopback
+	address 1.1.1.3
+	netmask 255.255.255.255
+
+#change ip address with 30 mask
+auto eth1
+iface eth1 inet static
+	address 10.1.1.6
+	netmask 255.255.255.252
+
+#for bgp envp we need modyfied vxlan10 configuration
+auto vxlan10
+iface vxlan10 inet manual
+	pre-up ip link add vxlan10 type vxlan \
+		id 10 \
+		dstport 4789 \
+		local 1.1.1.3 \
+		nolearning	  # now learning mac-addresses is bgp evpn part
+#		group 239.1.1.1 \ # group and adapter both not needed
+#		dev eth1
+	up ip link set vxlan10 up
+	post-down ip link del vxlan10
+
