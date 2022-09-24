@@ -27,7 +27,9 @@ A second image using a system of your choice with the following constraints:
   • The service BGPD active and configured. <br>
   • The service OSPFD active and configured. <br>
   • An IS-IS routing engine service. <br>
-  • Busybox or an equivalent.
+  • Busybox or an equivalent. <br>
   
+Below is an example of each image configured in GNS3:  
+<img src="https://github.com/etorren1/BADASS/blob/master/img/P1/img1.png" alt="host" width="2000"/>
   
   
