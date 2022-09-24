@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center"> <a name="top"></a>
       Bgp At Doors of Autonomous Systems is Simple
 </h1>
 
@@ -15,11 +15,11 @@
 
 <a href="#p1">Part 1: GNS3 configuration with Docker.</a> <br>
 <a href="#p2">Part 2: Discovering a VXLAN.</a> <br>
-<a href="#p2">Part 3: Discovering BGP with EVPN.</a>
+<a href="#p3">Part 3: Discovering BGP with EVPN.</a>
 
-## Part 1: GNS3 configuration with Docker 
+## Part 1: GNS3 configuration with Docker <a name="p1"></a>
 
-<article id="p1">We must use two images docker. </a><br>
+We must use two images docker. <br>
 A first image with a system of your choice. <br>
 A second image using a system of your choice with the following constraints:
 
@@ -32,9 +32,9 @@ A second image using a system of your choice with the following constraints:
 Below is an example of each image configured in GNS3:  
 <div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P1/img1.png" width="70%"/></div>
   
-##  Part 2: Discovering a VXLAN  
+##  Part 2: Discovering a VXLAN  <a name="p2"></a>
 
-<article id="p2">Now we have a functional basis to start setting up first VXLAN (RFC 7348) network. </a><br>
+Now we have a functional basis to start setting up first VXLAN (RFC 7348) network. <br>
 First in static then in dynamic multicast. Here is the topology of first VXLAN:
 
 <div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P2/img7.png" width="30%"/></div>
@@ -44,7 +44,7 @@ First in static then in dynamic multicast. Here is the topology of first VXLAN:
 <div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P2/img5.png" width="70%"/></div>
 <div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P2/img6.png" width="70%"/></div>
 
-## Part 3: Discovering BGP with EVPN
+## Part 3: Discovering BGP with EVPN <a name="p3"></a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now we will explore the principle of the BGP EVPN (rfc 7432) without using MPLS to simplify things. The controller will learn the MAC addresses. We will use our VXLAN with ID 10 seen in the previous part. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As in the second part we start with the topology of the expected network. We are going to use the principle of the route reflection (=RR). Our leafs (VTEP) will be configured to have dynamic relations. <br>
@@ -67,3 +67,5 @@ We can see our VNI (10 here) as well as our preconfigured routes (type 3). If ho
 For our verification a simple ping allows us to see that we can access all the machines through our RR using the VTEPs. We can see the VXLAN configured to 10 as well as our packets ICMP. We also see packets OSPF configured:
 
 <div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P3/img12.png" width="70%"/></div>
+
+<a href="#top">Gotop</a>
