@@ -37,7 +37,7 @@ Below is an example of each image configured in GNS3:
 Now we have a functional basis to start setting up first VXLAN (RFC 7348) network. <br>
 First in static then in dynamic multicast. Here is the topology of first VXLAN:
 
-<div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P2/img7.png" width="30%"/></div>
+<div align="center"><img  src="https://github.com/etorren1/BADASS/blob/master/img/P2/img7.png" width="50%"/></div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configure this network using a VXLAN with an ID of 10 and name vxlan10.  Set up a bridge here: br0.  You must configure your ETHERNET interfaces as you wish. Below is an example of the result when we inspect the traffic between our two machines in our VXLAN:
 
